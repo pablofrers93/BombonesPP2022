@@ -215,7 +215,7 @@ namespace BombonesPP2022.Datos
                 }
                 return lista;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("Error al leer de la tabla de Bombones");
             }
