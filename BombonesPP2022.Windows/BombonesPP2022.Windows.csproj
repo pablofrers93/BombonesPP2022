@@ -62,7 +62,7 @@
     <Compile Include="frmBombones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBombones.Designer.cs">
+    <Compile Include="frmBombones.designer.cs">
       <DependentUpon>frmBombones.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFabricas.cs">
@@ -216,6 +216,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dessert_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BombonesPP2022.Entidades\BombonesPP2022.Entidades.csproj">
+      <Project>{c9ce2a34-7f9c-48ef-84ff-697b560008f3}</Project>
+      <Name>BombonesPP2022.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BombonesPP2022.Servicios\BombonesPP2022.Servicios.csproj">
+      <Project>{6450ea8d-bf17-492a-b921-1211df625fd8}</Project>
+      <Name>BombonesPP2022.Servicios</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

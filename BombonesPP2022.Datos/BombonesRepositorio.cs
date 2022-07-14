@@ -17,64 +17,99 @@ namespace BombonesPP2022.Datos
             conexionBd = new ConexionBd();
         }
 
-        public Bombon GetBombon(int id, string nombreBombon)
+        //public Bombon GetBombon(int id, string nombreBombon)
+        //{
+        //    Bombon bombon = null;
+        //    try
+        //    {
+        //        using (var cn = conexionBd.AbrirConexion())
+        //        {
+        //            string cadenaComando =
+        //                "SELECT BombonId, NombreBombon, TipoChocolateId, TipoNuezId, TipoRellenoId, PrecioVenta, Stock, FabricaId, RowVersion FROM Bombones WHERE BombonId=@id and NombreBombon=@nombreBombon";
+        //            SqlCommand comando = new SqlCommand(cadenaComando, cn);
+        //            comando.Parameters.AddWithValue("@id", id);
+        //            comando.Parameters.AddWithValue("@nombreBombon", nombreBombon);
+        //            using (var reader = comando.ExecuteReader())
+        //            {
+        //                if (reader.HasRows)
+        //                {
+        //                    reader.Read();
+        //                    bombon = ConstruirBombon(reader);
+        //                }
+        //            }
+
+        //            SetTipoChocolate(cn, bombon);
+        //            SetTipoNuez(cn, bombon);
+        //            SetTipoRelleno(cn, bombon);
+        //        }
+
+        //        return bombon;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        throw;
+        //    }
+        //}
+        private void SetFabrica(SqlConnection cn, List<Bombon> lista)
         {
-            Bombon bombon = null;
-            try
+            foreach (var bombon in lista)
             {
-                using (var cn = conexionBd.AbrirConexion())
-                {
-                    string cadenaComando =
-                        "SELECT BombonId, NombreBombon, TipoChocolateId, TipoNuezId, TipoRellenoId, PrecioVenta, Stock, FabricaId, RowVersion FROM Bombones WHERE BombonId=@id and NombreBombon=@nombreBombon";
-                    SqlCommand comando = new SqlCommand(cadenaComando, cn);
-                    comando.Parameters.AddWithValue("@id", id);
-                    comando.Parameters.AddWithValue("@nombreBombon", nombreBombon);
-                    using (var reader = comando.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            reader.Read();
-                            bombon = ConstruirBombon(reader);
-                        }
-                    }
-
-                    SetTipoChocolate(cn, bombon);
-                    SetTipoNuez(cn, bombon);
-                    SetTipoRelleno(cn, bombon);
-                }
-
-                return bombon;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                bombon.Fabrica = SetTipoFabrica(cn, bombon.FabricaId);
             }
         }
 
-        private void SetTipoRelleno(SqlConnection cn, Bombon bombon)
+        private Fabrica SetTipoFabrica(SqlConnection cn, int bombonTipoFabricaId)
         {
-            Tipo_Relleno tipoRelleno = null;
-            try
+            Fabrica fabrica = null;
+            var cadenaComando = "SELECT FabricaId, NombreFabrica, Direccion, GerenteDeVentas, PaisId, RowVersion FROM Fabricas WHERE FabricaId=@id";
+            var comando = new SqlCommand(cadenaComando, cn);
+            comando.Parameters.AddWithValue("@id", bombonTipoFabricaId);
+            using (var reader = comando.ExecuteReader())
             {
-                var cadenaComando = "SELECT TipoRellenoId, Relleno, RowVersion FROM TiposDeRelleno WHERE TipoRellenoId=@id";
-                var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@id", bombon.TipoRellenoId);
-                using (var reader = comando.ExecuteReader())
+                if (reader.HasRows)
                 {
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        tipoRelleno = ConstruirTipoRelleno(reader);
-                    }
+                    reader.Read();
+                    fabrica = ConstruirTipoFabrica(reader);
                 }
+            }
+            return fabrica;
+        }
 
-                bombon.Tipo_Relleno = tipoRelleno;
-            }
-            catch (Exception e)
+        private Fabrica ConstruirTipoFabrica(SqlDataReader reader)
+        {
+            return new Fabrica()
             {
-                throw new Exception(e.Message);
+                FabricaId = reader.GetInt32(0),
+                NombreFabrica = reader.GetString(1),
+                Direccion = reader.GetString(2),
+                GerenteDeVentas = reader.GetString(3),
+                PaisId = reader.GetInt32(4),
+                RowVersion = (byte[])reader[5]
+            };
+        }
+        private void SetRelleno(SqlConnection cn, List<Bombon> lista)
+        {
+            foreach (var bombon in lista)
+            {
+                bombon.Tipo_Relleno = SetTipoRelleno(cn, bombon.TipoRellenoId);
             }
+        }
+        private Tipo_Relleno SetTipoRelleno(SqlConnection cn, int bombonTipoRellenoId)
+        {
+            Tipo_Relleno relleno = null;
+            var cadenaComando = "SELECT TipoRellenoId, Relleno, RowVersion FROM TiposDeRelleno WHERE TipoRellenoId=@id";
+            var comando = new SqlCommand(cadenaComando, cn);
+            comando.Parameters.AddWithValue("@id", bombonTipoRellenoId);
+            using (var reader = comando.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    relleno = ConstruirTipoRelleno(reader);
+                }
+            }
+            return relleno;
         }
 
         private Tipo_Relleno ConstruirTipoRelleno(SqlDataReader reader)
@@ -86,30 +121,28 @@ namespace BombonesPP2022.Datos
                 RowVersion = (byte[])reader[2]
             };
         }
-
-        private void SetTipoNuez(SqlConnection cn, Bombon bombon)
+        private void SetNuez(SqlConnection cn, List<Bombon> lista)
         {
-            Tipo_Nuez tipoNuez = null;
-            try
+            foreach (var bombon in lista)
             {
-                var cadenaComando = "SELECT TipoNuezId, Nuez, RowVersion FROM TiposDeNuez WHERE TipoNuezId=@id";
-                var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@id", bombon.TipoNuezId);
-                using (var reader = comando.ExecuteReader())
+                bombon.Tipo_Nuez = SetTipoNuez(cn, bombon.TipoNuezId);
+            }
+        }
+        private Tipo_Nuez SetTipoNuez(SqlConnection cn, int bombonTipoNuezId)
+        {
+            Tipo_Nuez nuez = null;
+            var cadenaComando = "SELECT TipoNuezId, Nuez, RowVersion FROM TipoDeNuez WHERE TipoNuezId=@id";
+            var comando = new SqlCommand(cadenaComando, cn);
+            comando.Parameters.AddWithValue("@id", bombonTipoNuezId);
+            using (var reader = comando.ExecuteReader())
+            {
+                if (reader.HasRows)
                 {
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        tipoNuez = ConstruirTipoNuez(reader);
-                    }
+                    reader.Read();
+                    nuez = ConstruirTipoNuez(reader);
                 }
-
-                bombon.Tipo_Nuez = tipoNuez;
             }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return nuez;
         }
 
         private Tipo_Nuez ConstruirTipoNuez(SqlDataReader reader)
@@ -121,30 +154,29 @@ namespace BombonesPP2022.Datos
                 RowVersion = (byte[])reader[2]
             };
         }
-
-        private void SetTipoChocolate(SqlConnection cn, Bombon bombon)
+        private void SetChocolate(SqlConnection cn, List<Bombon> lista)
         {
-            Tipo_Chocolate tipoChocolate = null;
-            try
+            foreach (var bombon in lista)
             {
-                var cadenaComando = "SELECT TipoChocolateId, Chocolate, RowVersion FROM TiposDeChocolate WHERE TipoChocolateId=@id";
-                var comando = new SqlCommand(cadenaComando, cn);
-                comando.Parameters.AddWithValue("@id", bombon.TipoChocolateId);
-                using (var reader = comando.ExecuteReader())
+                bombon.Tipo_Chocolate = SetTipoChocolate(cn, bombon.TipoChocolateId);
+            }
+        }
+        private Tipo_Chocolate SetTipoChocolate(SqlConnection cn, int bombonChocolateId)
+        {
+            Tipo_Chocolate chocolate = null;
+            var cadenaComando = "SELECT TipoChocolateId, Chocolate, RowVersion FROM TiposDeChocolate WHERE TipoChocolateId=@id";
+            var comando = new SqlCommand(cadenaComando, cn);
+            comando.Parameters.AddWithValue("@id", bombonChocolateId);
+            using (var reader = comando.ExecuteReader())
+            {
+                if (reader.HasRows)
                 {
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        tipoChocolate = ConstruirTipoChocolate(reader);
-                    }
+                    reader.Read();
+                    chocolate = ConstruirTipoChocolate(reader);
                 }
-
-                bombon.Tipo_Chocolate = tipoChocolate;
             }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return chocolate;
+            
         }
 
         private Tipo_Chocolate ConstruirTipoChocolate(SqlDataReader reader)
@@ -155,22 +187,7 @@ namespace BombonesPP2022.Datos
                 Chocolate = reader.GetString(1),
                 RowVersion = (byte[])reader[2]
             };
-        }
-
-        private Bombon ConstruirBombon(SqlDataReader reader)
-        {
-            Bombon bombon = new Bombon();
-            bombon.BombonId = reader.GetInt32(0);
-            bombon.NombreBombon = reader.GetString(1);
-            bombon.TipoChocolateId = reader.GetInt32(2);
-            bombon.TipoNuezId = reader.GetInt32(3);
-            bombon.TipoRellenoId = reader.GetInt32(4);
-            bombon.PrecioVenta = reader.GetDouble(5);
-            bombon.Stock = reader.GetInt32(6);
-            bombon.FabricaId = reader.GetInt32(7);
-            bombon.RowVersion = (byte[])reader[8];
-            return bombon;
-        }
+        } 
 
         public List<Bombon> GetLista()
         {
@@ -185,18 +202,39 @@ namespace BombonesPP2022.Datos
                     {
                         while (reader.Read())
                         {
-                            var fabrica = ConstruirBombon(reader);
-                            lista.Add(fabrica);
-                        }
-
+                            
+                            var bombon = ConstruirBombon(reader);
+                            lista.Add(bombon);
+                        }                     
                     }
-                    return lista;
+                    SetChocolate(cn, lista);
+                    SetNuez(cn, lista);
+                    SetRelleno(cn, lista);
+                    SetFabrica(cn, lista);
+                    
                 }
+                return lista;
             }
             catch (Exception e)
             {
-                throw new Exception("Error al leer de la tabla de Fabricas");
+                throw new Exception("Error al leer de la tabla de Bombones");
             }
+        }
+
+        private Bombon ConstruirBombon(SqlDataReader reader)
+        {
+            Bombon bombon = new Bombon();
+            bombon.BombonId = reader.GetInt32(0);
+            bombon.NombreBombon = reader.GetString(1);
+            bombon.TipoChocolateId = reader.GetInt32(2);
+            bombon.TipoNuezId = reader.GetInt32(3);
+            bombon.TipoRellenoId = reader.GetInt32(4);
+            bombon.PrecioVenta = reader.GetDecimal(5);
+            bombon.Stock = reader.GetInt16(6);
+            bombon.FabricaId = reader.GetInt32(7);
+            bombon.RowVersion = (byte[])reader[8];
+
+            return bombon;
         }
 
         public int Agregar(Bombon bombon)

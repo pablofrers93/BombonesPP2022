@@ -16,5 +16,10 @@ namespace BombonesPP2022.Windows
         {
             InitializeComponent();
         }
+
+        private void frmPaises_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

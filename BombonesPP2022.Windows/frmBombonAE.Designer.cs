@@ -205,6 +205,7 @@ namespace BombonesPP2022.Windows
             this.Name = "frmBombonAE";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBombonAE";
+            this.Load += new System.EventHandler(this.frmBombonAE_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
