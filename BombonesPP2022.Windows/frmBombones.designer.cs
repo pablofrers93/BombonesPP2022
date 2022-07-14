@@ -1,7 +1,7 @@
 ﻿
 namespace BombonesPP2022.Windows
 {
-    partial class frmFabricas
+    partial class frmBombones
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +29,21 @@ namespace BombonesPP2022.Windows
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GrillaPanel = new System.Windows.Forms.Panel();
             this.DatosDataGridView = new System.Windows.Forms.DataGridView();
+            this.colBombon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRelleno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colChocolate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNuez = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFabrica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ToolBarPanel = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.EditarIconButton = new FontAwesome.Sharp.IconButton();
             this.BorrarIconButton = new FontAwesome.Sharp.IconButton();
             this.NuevoIconButton = new FontAwesome.Sharp.IconButton();
-            this.colFabrica = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGerente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrillaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DatosDataGridView)).BeginInit();
             this.ToolBarPanel.SuspendLayout();
@@ -53,30 +55,32 @@ namespace BombonesPP2022.Windows
             this.GrillaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrillaPanel.Location = new System.Drawing.Point(0, 100);
             this.GrillaPanel.Name = "GrillaPanel";
-            this.GrillaPanel.Size = new System.Drawing.Size(800, 350);
+            this.GrillaPanel.Size = new System.Drawing.Size(875, 350);
             this.GrillaPanel.TabIndex = 5;
             // 
             // DatosDataGridView
             // 
             this.DatosDataGridView.AllowUserToAddRows = false;
             this.DatosDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DatosDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DatosDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DatosDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DatosDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DatosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DatosDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colFabrica,
-            this.colDireccion,
-            this.colPais,
-            this.colGerente});
+            this.colBombon,
+            this.colRelleno,
+            this.colChocolate,
+            this.colNuez,
+            this.colPrecio,
+            this.colFabrica});
             this.DatosDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DatosDataGridView.Location = new System.Drawing.Point(0, 0);
             this.DatosDataGridView.MultiSelect = false;
@@ -85,8 +89,51 @@ namespace BombonesPP2022.Windows
             this.DatosDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatosDataGridView.RowTemplate.Height = 28;
             this.DatosDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DatosDataGridView.Size = new System.Drawing.Size(800, 350);
+            this.DatosDataGridView.Size = new System.Drawing.Size(875, 350);
             this.DatosDataGridView.TabIndex = 1;
+            // 
+            // colBombon
+            // 
+            this.colBombon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colBombon.HeaderText = "Bombón";
+            this.colBombon.Name = "colBombon";
+            this.colBombon.ReadOnly = true;
+            // 
+            // colRelleno
+            // 
+            this.colRelleno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colRelleno.HeaderText = "Relleno";
+            this.colRelleno.Name = "colRelleno";
+            this.colRelleno.ReadOnly = true;
+            // 
+            // colChocolate
+            // 
+            this.colChocolate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colChocolate.HeaderText = "Chocolate";
+            this.colChocolate.Name = "colChocolate";
+            this.colChocolate.ReadOnly = true;
+            this.colChocolate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colNuez
+            // 
+            this.colNuez.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colNuez.HeaderText = "Nuez";
+            this.colNuez.Name = "colNuez";
+            this.colNuez.ReadOnly = true;
+            // 
+            // colPrecio
+            // 
+            this.colPrecio.FillWeight = 20F;
+            this.colPrecio.HeaderText = "Precio";
+            this.colPrecio.Name = "colPrecio";
+            this.colPrecio.ReadOnly = true;
+            // 
+            // colFabrica
+            // 
+            this.colFabrica.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFabrica.HeaderText = "Fábrica";
+            this.colFabrica.Name = "colFabrica";
+            this.colFabrica.ReadOnly = true;
             // 
             // ToolBarPanel
             // 
@@ -98,7 +145,7 @@ namespace BombonesPP2022.Windows
             this.ToolBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ToolBarPanel.Location = new System.Drawing.Point(0, 0);
             this.ToolBarPanel.Name = "ToolBarPanel";
-            this.ToolBarPanel.Size = new System.Drawing.Size(800, 100);
+            this.ToolBarPanel.Size = new System.Drawing.Size(875, 100);
             this.ToolBarPanel.TabIndex = 4;
             // 
             // iconButton1
@@ -128,6 +175,7 @@ namespace BombonesPP2022.Windows
             this.EditarIconButton.Text = "Editar";
             this.EditarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.EditarIconButton.UseVisualStyleBackColor = true;
+            this.EditarIconButton.Click += new System.EventHandler(this.EditarIconButton_Click);
             // 
             // BorrarIconButton
             // 
@@ -142,6 +190,7 @@ namespace BombonesPP2022.Windows
             this.BorrarIconButton.Text = "Borrar";
             this.BorrarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BorrarIconButton.UseVisualStyleBackColor = true;
+            this.BorrarIconButton.Click += new System.EventHandler(this.BorrarIconButton_Click);
             // 
             // NuevoIconButton
             // 
@@ -156,45 +205,19 @@ namespace BombonesPP2022.Windows
             this.NuevoIconButton.Text = "Nuevo";
             this.NuevoIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.NuevoIconButton.UseVisualStyleBackColor = true;
+            this.NuevoIconButton.Click += new System.EventHandler(this.NuevoIconButton_Click);
             // 
-            // colFabrica
-            // 
-            this.colFabrica.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFabrica.HeaderText = "Fábrica";
-            this.colFabrica.Name = "colFabrica";
-            this.colFabrica.ReadOnly = true;
-            // 
-            // colDireccion
-            // 
-            this.colDireccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDireccion.HeaderText = "Dirección";
-            this.colDireccion.Name = "colDireccion";
-            this.colDireccion.ReadOnly = true;
-            // 
-            // colPais
-            // 
-            this.colPais.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPais.HeaderText = "País";
-            this.colPais.Name = "colPais";
-            this.colPais.ReadOnly = true;
-            this.colPais.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colGerente
-            // 
-            this.colGerente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colGerente.HeaderText = "Gerente";
-            this.colGerente.Name = "colGerente";
-            this.colGerente.ReadOnly = true;
-            // 
-            // frmFabricas
+            // frmBombones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(875, 450);
             this.Controls.Add(this.GrillaPanel);
             this.Controls.Add(this.ToolBarPanel);
-            this.Name = "frmFabricas";
-            this.Text = "frmFabricas";
+            this.Name = "frmBombones";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frmBombones";
+            this.Load += new System.EventHandler(this.frmBombones_Load);
             this.GrillaPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DatosDataGridView)).EndInit();
             this.ToolBarPanel.ResumeLayout(false);
@@ -211,9 +234,11 @@ namespace BombonesPP2022.Windows
         private FontAwesome.Sharp.IconButton EditarIconButton;
         private FontAwesome.Sharp.IconButton BorrarIconButton;
         private FontAwesome.Sharp.IconButton NuevoIconButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBombon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRelleno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colChocolate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNuez;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFabrica;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDireccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPais;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGerente;
     }
 }

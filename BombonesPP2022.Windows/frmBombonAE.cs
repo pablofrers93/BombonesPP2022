@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BombonesPP2022.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,21 @@ namespace BombonesPP2022.Windows
         public frmBombonAE()
         {
             InitializeComponent();
+        }
+
+        private void frmBombonAE_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private Bombon bombon;
+        public void SetBombon(Bombon bombon)
+        {
+            this.bombon = bombon;
+        }
+        public Bombon GetBombon()
+        {
+            return bombon;
         }
     }
 }

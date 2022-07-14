@@ -152,6 +152,7 @@ namespace BombonesPP2022.Windows
             this.Controls.Add(this.ToolBarPanel);
             this.Name = "frmPaises";
             this.Text = "frmPaises";
+            this.Load += new System.EventHandler(this.frmPaises_Load);
             this.GrillaPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DatosDataGridView)).EndInit();
             this.ToolBarPanel.ResumeLayout(false);

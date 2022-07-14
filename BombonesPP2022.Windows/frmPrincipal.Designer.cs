@@ -60,6 +60,7 @@ namespace BombonesPP2022.Windows
             this.BombonesButton.Text = "Bombones";
             this.BombonesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BombonesButton.UseVisualStyleBackColor = true;
+            this.BombonesButton.Click += new System.EventHandler(this.BombonesButton_Click);
             // 
             // FabricasButton
             // 
@@ -115,6 +116,7 @@ namespace BombonesPP2022.Windows
             this.PaisesButton.Text = "Países";
             this.PaisesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.PaisesButton.UseVisualStyleBackColor = true;
+            this.PaisesButton.Click += new System.EventHandler(this.PaisesButton_Click);
             // 
             // CerrarButton
             // 
@@ -124,6 +126,7 @@ namespace BombonesPP2022.Windows
             this.CerrarButton.Size = new System.Drawing.Size(75, 59);
             this.CerrarButton.TabIndex = 6;
             this.CerrarButton.UseVisualStyleBackColor = true;
+            this.CerrarButton.Click += new System.EventHandler(this.CerrarButton_Click);
             // 
             // label2
             // 

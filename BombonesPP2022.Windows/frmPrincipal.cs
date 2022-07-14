@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,26 @@ namespace BombonesPP2022.Windows
         public frmPrincipal()
         {
             InitializeComponent();
+        }
+
+        private void PaisesButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void BombonesButton_Click(object sender, EventArgs e)
+        {
+
+            frmBombones frm = new frmBombones() { Text = "Bombones" };
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+        }
+
+        private void CerrarButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
