@@ -17,40 +17,37 @@ namespace BombonesPP2022.Datos
             conexionBd = new ConexionBd();
         }
 
-        //public Bombon GetBombon(int id, string nombreBombon)
-        //{
-        //    Bombon bombon = null;
-        //    try
-        //    {
-        //        using (var cn = conexionBd.AbrirConexion())
-        //        {
-        //            string cadenaComando =
-        //                "SELECT BombonId, NombreBombon, TipoChocolateId, TipoNuezId, TipoRellenoId, PrecioVenta, Stock, FabricaId, RowVersion FROM Bombones WHERE BombonId=@id and NombreBombon=@nombreBombon";
-        //            SqlCommand comando = new SqlCommand(cadenaComando, cn);
-        //            comando.Parameters.AddWithValue("@id", id);
-        //            comando.Parameters.AddWithValue("@nombreBombon", nombreBombon);
-        //            using (var reader = comando.ExecuteReader())
-        //            {
-        //                if (reader.HasRows)
-        //                {
-        //                    reader.Read();
-        //                    bombon = ConstruirBombon(reader);
-        //                }
-        //            }
+        public List<Bombon> GetLista()
+        {
+            List<Bombon> lista = new List<Bombon>();
+            try
+            {
+                using (var cn = conexionBd.AbrirConexion())
+                {
+                    var cadenaComando = "SELECT BombonId, NombreBombon, TipoChocolateId, TipoNuezId, TipoRellenoId, PrecioVenta, Stock, FabricaId, RowVersion FROM Bombones ORDER BY NombreBombon";
+                    var comando = new SqlCommand(cadenaComando, cn);
+                    using (var reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
 
-        //            SetTipoChocolate(cn, bombon);
-        //            SetTipoNuez(cn, bombon);
-        //            SetTipoRelleno(cn, bombon);
-        //        }
+                            var bombon = ConstruirBombon(reader);
+                            lista.Add(bombon);
+                        }
+                    }
+                    SetChocolate(cn, lista);
+                    SetNuez(cn, lista);
+                    SetRelleno(cn, lista);
+                    SetFabrica(cn, lista);
 
-        //        return bombon;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        throw;
-        //    }
-        //}
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al leer de la tabla de Bombones");
+            }
+        }
         private void SetFabrica(SqlConnection cn, List<Bombon> lista)
         {
             foreach (var bombon in lista)
@@ -189,38 +186,6 @@ namespace BombonesPP2022.Datos
             };
         } 
 
-        public List<Bombon> GetLista()
-        {
-            List<Bombon> lista = new List<Bombon>();
-            try
-            {
-                using (var cn = conexionBd.AbrirConexion())
-                {
-                    var cadenaComando = "SELECT BombonId, NombreBombon, TipoChocolateId, TipoNuezId, TipoRellenoId, PrecioVenta, Stock, FabricaId, RowVersion FROM Bombones ORDER BY NombreBombon";
-                    var comando = new SqlCommand(cadenaComando, cn);
-                    using (var reader = comando.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            
-                            var bombon = ConstruirBombon(reader);
-                            lista.Add(bombon);
-                        }                     
-                    }
-                    SetChocolate(cn, lista);
-                    SetNuez(cn, lista);
-                    SetRelleno(cn, lista);
-                    SetFabrica(cn, lista);
-                    
-                }
-                return lista;
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error al leer de la tabla de Bombones");
-            }
-        }
-
         private Bombon ConstruirBombon(SqlDataReader reader)
         {
             Bombon bombon = new Bombon();
@@ -264,36 +229,16 @@ namespace BombonesPP2022.Datos
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
-            }
-        }
-
-        public bool Existe(Bombon bombon)
-        {
-            try
-            {
-                using (var cn = conexionBd.AbrirConexion())
+                if (e.Message.Contains("IX_"))
                 {
-                    var cadenaComando = "SELECT COUNT(*) FROM Bombones WHERE NombreBombon=@nom";
-                    if (bombon.BombonId != 0)
-                    {
-                        cadenaComando += " AND BombonId<>@bombonId";
-                    }
-                    var comando = new SqlCommand(cadenaComando, cn);
-                    comando.Parameters.AddWithValue("@nom", bombon.NombreBombon);
-                    if (bombon.BombonId != 0)
-                    {
-                        comando.Parameters.AddWithValue("@bombonId", bombon.BombonId);
-                    }
-
-                    return (int)comando.ExecuteScalar() > 0;
+                    throw new Exception("Bombon repetido");
                 }
-            }
-            catch (Exception e)
-            {
+
                 throw new Exception(e.Message);
             }
         }
+
+        
         public int Borrar(Bombon bombon)
         {
             int registrosAfectados = 0;
@@ -312,6 +257,10 @@ namespace BombonesPP2022.Datos
             }
             catch (Exception e)
             {
+                if (e.Message.Contains("REFERENCE"))
+                {
+                    throw new Exception("Registro relacionado... baja denegada");
+                }
                 throw new Exception(e.Message);
             }
         }
@@ -342,6 +291,10 @@ namespace BombonesPP2022.Datos
             }
             catch (Exception e)
             {
+                if (e.Message.Contains("IX_"))
+                {
+                    throw new Exception("Categoría repetida");
+                }
                 throw new Exception(e.Message);
             }
         }
