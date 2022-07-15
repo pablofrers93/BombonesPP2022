@@ -42,7 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BombonesServicios.cs" />
+    <Compile Include="FabricaServicios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoChocolateServicios.cs" />
+    <Compile Include="TipoNuezServicios.cs" />
+    <Compile Include="TipoRellenoServicios.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BombonesPP2022.Datos\BombonesPP2022.Datos.csproj">
