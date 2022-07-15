@@ -44,7 +44,11 @@
   <ItemGroup>
     <Compile Include="BombonesRepositorio.cs" />
     <Compile Include="ConexionBd.cs" />
+    <Compile Include="FabricasRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoChocolatesRepositorio.cs" />
+    <Compile Include="TipoNuecesRepositorio.cs" />
+    <Compile Include="TipoRellenosRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BombonesPP2022.Entidades\BombonesPP2022.Entidades.csproj">
