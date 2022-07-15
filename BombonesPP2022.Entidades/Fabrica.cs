@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BombonesPP2022.Entidades
 {
-    public class Fabrica
+    public class Fabrica:ICloneable
     {
         public int FabricaId { get; set; }
         public string NombreFabrica { get; set; }
@@ -17,5 +17,9 @@ namespace BombonesPP2022.Entidades
 
         public Pais Pais { get; set; }
 
+        public Object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }
