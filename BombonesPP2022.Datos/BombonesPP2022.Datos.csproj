@@ -45,6 +45,7 @@
     <Compile Include="BombonesRepositorio.cs" />
     <Compile Include="ConexionBd.cs" />
     <Compile Include="FabricasRepositorio.cs" />
+    <Compile Include="PaisesRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoChocolatesRepositorio.cs" />
     <Compile Include="TipoNuecesRepositorio.cs" />

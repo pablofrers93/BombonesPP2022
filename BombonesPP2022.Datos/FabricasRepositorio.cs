@@ -100,9 +100,13 @@ namespace BombonesPP2022.Datos
             {
                 using (var cn = conexionBd.AbrirConexion())
                 {
-                    var cadenaComando = "INSERT INTO Fabricas (NombreFabrica) VALUES (@nom)";
+                    var cadenaComando = "INSERT INTO Fabricas (NombreFabrica, Direccion, GerenteDeVentas, PaisId) VALUES (@nom, @dir, @ger, @pais)";
                     var comando = new SqlCommand(cadenaComando, cn);
                     comando.Parameters.AddWithValue("@nom", fabrica.NombreFabrica);
+                    comando.Parameters.AddWithValue("@dir", fabrica.Direccion);
+                    comando.Parameters.AddWithValue("@ger", fabrica.GerenteDeVentas);
+                    comando.Parameters.AddWithValue("@pais", fabrica.PaisId);
+
                     registrosAfectados = comando.ExecuteNonQuery();
                     if (registrosAfectados > 0)
                     {
@@ -162,9 +166,12 @@ namespace BombonesPP2022.Datos
             {
                 using (var cn = conexionBd.AbrirConexion())
                 {
-                    var cadenaComando = "UPDATE Fabricas SET NombreFabrica=@nom WHERE FabricaId=@id AND RowVersion=@r";
+                    var cadenaComando = "UPDATE Fabricas SET NombreFabrica=@nom, Direccion=@dir, GerenteDeVentas=@ger, PaisId=@Pais WHERE FabricaId=@id AND RowVersion=@r";
                     var comando = new SqlCommand(cadenaComando, cn);
                     comando.Parameters.AddWithValue("@nom", fabrica.NombreFabrica);
+                    comando.Parameters.AddWithValue("@dir", fabrica.Direccion);
+                    comando.Parameters.AddWithValue("@ger", fabrica.GerenteDeVentas);
+                    comando.Parameters.AddWithValue("@pais", fabrica.PaisId);
                     comando.Parameters.AddWithValue("@id", fabrica.FabricaId);
                     comando.Parameters.AddWithValue("@r", fabrica.RowVersion);
                     registrosAfectados = comando.ExecuteNonQuery();

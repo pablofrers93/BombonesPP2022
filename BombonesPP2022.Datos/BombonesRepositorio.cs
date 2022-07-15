@@ -30,7 +30,6 @@ namespace BombonesPP2022.Datos
                     {
                         while (reader.Read())
                         {
-
                             var bombon = ConstruirBombon(reader);
                             lista.Add(bombon);
                         }
