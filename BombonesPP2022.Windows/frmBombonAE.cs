@@ -136,5 +136,10 @@ namespace BombonesPP2022.Windows
                 bombon.Stock = 100;
                 DialogResult = DialogResult.OK;
         }
+
+        private void CancelarIconButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

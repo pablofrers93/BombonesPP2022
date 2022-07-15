@@ -64,6 +64,7 @@ namespace BombonesPP2022.Windows
             this.CancelarIconButton.Text = "Cancelar";
             this.CancelarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelarIconButton.UseVisualStyleBackColor = false;
+            this.CancelarIconButton.Click += new System.EventHandler(this.CancelarIconButton_Click);
             // 
             // OKIconButton
             // 
@@ -79,6 +80,7 @@ namespace BombonesPP2022.Windows
             this.OKIconButton.Text = "Guardar";
             this.OKIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.OKIconButton.UseVisualStyleBackColor = false;
+            this.OKIconButton.Click += new System.EventHandler(this.OKIconButton_Click);
             // 
             // FabricaTextBox
             // 
@@ -140,7 +142,7 @@ namespace BombonesPP2022.Windows
             this.GerenteTextBox.Size = new System.Drawing.Size(472, 20);
             this.GerenteTextBox.TabIndex = 24;
             // 
-            // frmFabricas
+            // frmFabricasAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -155,8 +157,9 @@ namespace BombonesPP2022.Windows
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Name = "frmFabricas";
+            this.Name = "frmFabricasAE";
             this.Text = "frmFabricas";
+            this.Load += new System.EventHandler(this.frmFabricasAE_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

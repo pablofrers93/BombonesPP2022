@@ -33,15 +33,15 @@ namespace BombonesPP2022.Windows
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GrillaPanel = new System.Windows.Forms.Panel();
             this.DatosDataGridView = new System.Windows.Forms.DataGridView();
+            this.colFabrica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGerente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ToolBarPanel = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.EditarIconButton = new FontAwesome.Sharp.IconButton();
             this.BorrarIconButton = new FontAwesome.Sharp.IconButton();
             this.NuevoIconButton = new FontAwesome.Sharp.IconButton();
-            this.colFabrica = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPais = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGerente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrillaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DatosDataGridView)).BeginInit();
             this.ToolBarPanel.SuspendLayout();
@@ -87,6 +87,36 @@ namespace BombonesPP2022.Windows
             this.DatosDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DatosDataGridView.Size = new System.Drawing.Size(800, 350);
             this.DatosDataGridView.TabIndex = 1;
+            this.DatosDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DatosDataGridView_CellContentClick);
+            // 
+            // colFabrica
+            // 
+            this.colFabrica.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFabrica.HeaderText = "Fábrica";
+            this.colFabrica.Name = "colFabrica";
+            this.colFabrica.ReadOnly = true;
+            // 
+            // colDireccion
+            // 
+            this.colDireccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDireccion.HeaderText = "Dirección";
+            this.colDireccion.Name = "colDireccion";
+            this.colDireccion.ReadOnly = true;
+            // 
+            // colPais
+            // 
+            this.colPais.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPais.HeaderText = "País";
+            this.colPais.Name = "colPais";
+            this.colPais.ReadOnly = true;
+            this.colPais.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colGerente
+            // 
+            this.colGerente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colGerente.HeaderText = "Gerente";
+            this.colGerente.Name = "colGerente";
+            this.colGerente.ReadOnly = true;
             // 
             // ToolBarPanel
             // 
@@ -128,6 +158,7 @@ namespace BombonesPP2022.Windows
             this.EditarIconButton.Text = "Editar";
             this.EditarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.EditarIconButton.UseVisualStyleBackColor = true;
+            this.EditarIconButton.Click += new System.EventHandler(this.EditarIconButton_Click);
             // 
             // BorrarIconButton
             // 
@@ -142,6 +173,7 @@ namespace BombonesPP2022.Windows
             this.BorrarIconButton.Text = "Borrar";
             this.BorrarIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BorrarIconButton.UseVisualStyleBackColor = true;
+            this.BorrarIconButton.Click += new System.EventHandler(this.BorrarIconButton_Click);
             // 
             // NuevoIconButton
             // 
@@ -156,35 +188,7 @@ namespace BombonesPP2022.Windows
             this.NuevoIconButton.Text = "Nuevo";
             this.NuevoIconButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.NuevoIconButton.UseVisualStyleBackColor = true;
-            // 
-            // colFabrica
-            // 
-            this.colFabrica.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFabrica.HeaderText = "Fábrica";
-            this.colFabrica.Name = "colFabrica";
-            this.colFabrica.ReadOnly = true;
-            // 
-            // colDireccion
-            // 
-            this.colDireccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDireccion.HeaderText = "Dirección";
-            this.colDireccion.Name = "colDireccion";
-            this.colDireccion.ReadOnly = true;
-            // 
-            // colPais
-            // 
-            this.colPais.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPais.HeaderText = "País";
-            this.colPais.Name = "colPais";
-            this.colPais.ReadOnly = true;
-            this.colPais.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colGerente
-            // 
-            this.colGerente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colGerente.HeaderText = "Gerente";
-            this.colGerente.Name = "colGerente";
-            this.colGerente.ReadOnly = true;
+            this.NuevoIconButton.Click += new System.EventHandler(this.NuevoIconButton_Click);
             // 
             // frmFabricas
             // 
@@ -195,6 +199,7 @@ namespace BombonesPP2022.Windows
             this.Controls.Add(this.ToolBarPanel);
             this.Name = "frmFabricas";
             this.Text = "frmFabricas";
+            this.Load += new System.EventHandler(this.frmFabricas_Load);
             this.GrillaPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DatosDataGridView)).EndInit();
             this.ToolBarPanel.ResumeLayout(false);

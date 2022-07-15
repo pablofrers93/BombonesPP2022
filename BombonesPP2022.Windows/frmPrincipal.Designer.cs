@@ -72,6 +72,7 @@ namespace BombonesPP2022.Windows
             this.FabricasButton.Text = "Fábricas";
             this.FabricasButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.FabricasButton.UseVisualStyleBackColor = true;
+            this.FabricasButton.Click += new System.EventHandler(this.FabricasButton_Click);
             // 
             // RellenosButton
             // 
@@ -83,6 +84,7 @@ namespace BombonesPP2022.Windows
             this.RellenosButton.Text = "Rellenos";
             this.RellenosButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.RellenosButton.UseVisualStyleBackColor = true;
+            this.RellenosButton.Click += new System.EventHandler(this.RellenosButton_Click);
             // 
             // NuecesButton
             // 

@@ -37,5 +37,20 @@ namespace BombonesPP2022.Windows
         {
             this.Close();
         }
+
+        private void RellenosButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FabricasButton_Click(object sender, EventArgs e)
+        {
+            frmFabricas frm = new frmFabricas() { Text = "Fabricas" };
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+        }
     }
 }
